@@ -3,6 +3,10 @@ package main
 import "net"
 
 func main() {
+	broadcastMyIP()
+}
+
+func broadcastMyIP() {
 	// 定义广播地址
 	broadcastAddr := net.IPv4(255, 255, 255, 255)
 
