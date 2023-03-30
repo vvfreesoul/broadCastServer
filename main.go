@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	ListenerForBroadcastResponses()
-	listenerOfGetBroadCastIP()
+	go ListenerForBroadcastResponses()
+	go listenerOfGetBroadCastIP()
 }
 func ListenerForBroadcastResponses() {
 	// 定义本地地址
