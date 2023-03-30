@@ -8,7 +8,7 @@ func main() {
 
 func broadcastMyIP() {
 	// 定义广播地址
-	broadcastAddr := net.IPv4(255, 255, 255, 255)
+	broadcastAddr := net.IPv4(255, 255, 255, 0)
 
 	// 定义本地地址
 	localAddr := net.UDPAddr{
