@@ -8,6 +8,9 @@ import (
 func main() {
 	listenerOfGetBroadCastIP()
 }
+func SendLocalIPToRemoteMachineViaBroadcastIP(remoteAddress string) {
+
+}
 func listenerOfGetBroadCastIP() {
 	// 定义本地地址
 	localAddr := net.UDPAddr{
@@ -20,20 +23,20 @@ func listenerOfGetBroadCastIP() {
 	if err != nil {
 		panic(err)
 	}
+	defer conn.Close()
 
-	// 读取数据
-	buffer := make([]byte, 1024)
-	n, remoteAddr, err := conn.ReadFromUDP(buffer)
-	if err != nil {
-		panic(err)
-	}
+	for {
+		// 读取数据
+		buffer := make([]byte, 1024)
+		n, remoteAddr, err := conn.ReadFromUDP(buffer)
+		if err != nil {
+			fmt.Printf("Error while reading from UDP: %v\n", err)
+			continue
+		}
 
-	// 显示接收到的数据和发送方地址
-	fmt.Printf("Received %d bytes from %v: %s\n", n, remoteAddr, string(buffer[:n]))
+		// 处理接收到的数据
+		fmt.Printf("Received %d bytes from %v: %s\n", n, remoteAddr, string(buffer[:n]))
 
-	// 关闭连接
-	err = conn.Close()
-	if err != nil {
-		panic(err)
+		// 处理完数据后可以继续等待下一次读取
 	}
 }
