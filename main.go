@@ -9,13 +9,13 @@ func main() {
 	// 定义本地地址
 	localAddr := net.UDPAddr{
 		IP:   net.IPv4zero,
-		Port: 12345,
+		Port: 1234,
 	}
 
 	// 创建本地UDP连接
 	conn, err := net.DialUDP("udp", &localAddr, &net.UDPAddr{
 		IP:   broadcastAddr,
-		Port: 12345,
+		Port: 1234,
 	})
 	if err != nil {
 		panic(err)
