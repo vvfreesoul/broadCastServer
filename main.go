@@ -1,11 +1,11 @@
 package main
 
-import "net"
+import (
+	"fmt"
+	"net"
+)
 
 func main() {
-	// 定义广播地址
-	broadcastAddr := net.IPv4(255, 255, 255, 255)
-
 	// 定义本地地址
 	localAddr := net.UDPAddr{
 		IP:   net.IPv4zero,
@@ -13,19 +13,20 @@ func main() {
 	}
 
 	// 创建本地UDP连接
-	conn, err := net.DialUDP("udp", &localAddr, &net.UDPAddr{
-		IP:   broadcastAddr,
-		Port: 12345,
-	})
+	conn, err := net.ListenUDP("udp", &localAddr)
 	if err != nil {
 		panic(err)
 	}
 
-	// 发送数据到广播地址
-	_, err = conn.Write([]byte("Hello, world!"))
+	// 读取数据
+	buffer := make([]byte, 1024)
+	n, remoteAddr, err := conn.ReadFromUDP(buffer)
 	if err != nil {
 		panic(err)
 	}
+
+	// 显示接收到的数据和发送方地址
+	fmt.Printf("Received %d bytes from %v: %s\n", n, remoteAddr, string(buffer[:n]))
 
 	// 关闭连接
 	err = conn.Close()
