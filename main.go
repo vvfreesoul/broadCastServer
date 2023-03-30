@@ -13,7 +13,7 @@ func broadcastMyIP() {
 	// 定义本地地址
 	localAddr := net.UDPAddr{
 		IP:   net.IPv4zero,
-		Port: 1234,
+		Port: 0,
 	}
 
 	// 创建本地UDP连接
