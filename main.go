@@ -4,14 +4,17 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"time"
 )
 
 func main() {
 	go ListenerForBroadcastResponses()
 	go listenerOfGetBroadCastIP()
+	time.Sleep(time.Second * 10000)
 }
 func ListenerForBroadcastResponses() {
 	// 定义本地地址
+	fmt.Printf("执行了ListenerForBroadcastResponses")
 	localAddr := net.TCPAddr{
 		IP:   net.IPv4zero,
 		Port: 12345,
@@ -85,6 +88,7 @@ func SendLocalIPToRemoteMachineViaBroadcastIP(remoteIPAddress string) {
 	}
 }
 func listenerOfGetBroadCastIP() {
+	fmt.Printf("listenerOfGetBroadCastIP")
 	// 定义本地地址
 	localAddr := net.UDPAddr{
 		IP:   net.IPv4zero,
