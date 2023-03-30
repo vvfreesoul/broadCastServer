@@ -6,10 +6,13 @@ import (
 )
 
 func main() {
+	listenerOfGetBroadCastIP()
+}
+func listenerOfGetBroadCastIP() {
 	// 定义本地地址
 	localAddr := net.UDPAddr{
 		IP:   net.IPv4zero,
-		Port: 12345,
+		Port: 1234,
 	}
 
 	// 创建本地UDP连接
