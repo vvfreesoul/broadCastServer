@@ -4,13 +4,12 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"time"
 )
 
 func main() {
 	go ListenerForBroadcastResponses()
 	go listenerOfGetBroadCastIP()
-	time.Sleep(time.Second * 10000)
+	//time.Sleep(time.Second * 10000)
 }
 func ListenerForBroadcastResponses() {
 	// 定义本地地址
